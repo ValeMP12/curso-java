@@ -18,6 +18,7 @@ public class Pelicula {
         return titulo + " (" + fechaEstreno.getYear() + ") \n" +
                 "Género: " + genero + "\n" +
                 "Duracion: " + duracion +" min \n" +
+                "Fecha de estreno: " + fechaEstreno + "\n" +
                 "Calificacion: " + calificacion + "/10";
     }
     public void calificacion(double calificacion) {
