@@ -3,6 +3,8 @@ package platzi.play;
 import platzi.play.contenido.Pelicula;
 import platzi.play.plataforma.Usuario;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -10,13 +12,22 @@ public class Main {
         System.out.println("Platzi Play 🍿");
         Pelicula pelicula = new Pelicula();
         pelicula.titulo = "The Matrix";
-        pelicula.anioEstreno = 1999;
+        pelicula.fechaEstreno = LocalDate.of(1999, 3, 31);
         pelicula.genero = "Ciencia Ficcion";
         pelicula.duracion = 136;
         pelicula.calificacion(8.7);
 
+        long duracionLong = pelicula.duracion;
+        int calificacionInt = (int) pelicula.calificacion;
+        long numeroDePremios = Long.parseLong("25");
+
+        System.out.println("La duracion en long es: " + duracionLong);
+        System.out.println("La calificacion en int es: " + calificacionInt);
+        System.out.println("El numero de premios es: " + numeroDePremios);
+
         Usuario usuario = new Usuario();
         usuario.nombre = "Juan";
+        usuario.fechaRegistro = LocalDateTime.of(1999, 5, 20, 10, 30);
         usuario.ver(pelicula);
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Cual es tu nombre?");
