@@ -24,18 +24,11 @@ public class Main {
 
 
 
-        Pelicula pelicula = new Pelicula();
-        pelicula.titulo = nombre;
-        pelicula.fechaEstreno = fechaEstreno;
-        pelicula.genero = genero;
-        pelicula.duracion = duracion;
-        pelicula.calificacion(calificacion);
+        Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
 
         System.out.println(pelicula.obtenerFichaTecnica());
 
-        Usuario usuario = new Usuario();
-        usuario.nombre = "Juan";
-        usuario.fechaRegistro = LocalDateTime.of(1999, 5, 20, 10, 30);
+        Usuario usuario = new Usuario("Juan", "juan.pepito@gmail.com");
         usuario.ver(pelicula);
     }
 }

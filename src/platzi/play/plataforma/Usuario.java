@@ -15,5 +15,9 @@ public class Usuario {
         pelicula.reproducir();
     }
 
-
+    public Usuario(String nombre, String email) {
+        this.nombre = nombre;
+        this.email = email;
+        this.fechaRegistro = LocalDateTime.now();
+    }
 }
