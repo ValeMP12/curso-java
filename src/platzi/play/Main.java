@@ -19,12 +19,14 @@ public class Main {
         String genero = ScannerUtils.capturarTexto("¿Cual es el genero de la pelicula?");
         int duracion = ScannerUtils.capturarNumero("¿Cual es la duracion de la pelicula?");
         double calificacion = ScannerUtils.capturarDecimal("¿Cual es la calificacion de la pelicula?");
-        LocalDate fechaEstreno = LocalDate.parse(ScannerUtils.capturarFecha("¿Cual es la fecha de estreno de la pelicula?"));
         System.out.println("-------------------------");
 
 
 
         Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
+        pelicula.calificacion(calificacion);
+
+        pelicula.reproducir();
 
         System.out.println(pelicula.obtenerFichaTecnica());
 
