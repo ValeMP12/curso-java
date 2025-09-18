@@ -22,6 +22,7 @@ public class Pelicula {
     public Pelicula(String titulo, int duracion, String genero, double calificacion) {
         this(titulo, duracion, genero);
         this.calificacion(calificacion);
+        this.fechaEstreno = LocalDate.now();
     }
 
     public void reproducir() {
