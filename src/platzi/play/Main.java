@@ -2,6 +2,7 @@ package platzi.play;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.excepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
@@ -50,13 +51,19 @@ public class Main {
             switch (opcionElegida) {
                 case AGREGAR_CONTENIDO -> {
                     String nombre = ScannerUtils.capturarTexto("¿Cual es el nombre de la pelicula?");
-                    Genero genero = ScannerUtils.capturarGenero("¿Cual es el genero de la pelicula?");
+                    Genero genero = ScannerUtils.capturarGenero("¿Cual es el genero de la pelicula? \n");
                     int duracion = ScannerUtils.capturarNumero("¿Cual es la duracion de la pelicula?");
                     double calificacion = ScannerUtils.capturarDecimal("¿Cual es la calificacion de la pelicula?");
                     Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
-                    plataforma.agregar(pelicula);
-                    System.out.println("Pelicula agregada exitosamente.");
-                    System.out.println("----------------------------------");
+                    try {
+                        plataforma.agregar(pelicula);
+                        System.out.println("Pelicula agregada exitosamente.");
+                        System.out.println("----------------------------------");
+                    } catch (PeliculaExistenteException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("No se pudo agregar la pelicula.");
+                        System.out.println("----------------------------------");
+                    }
                 }
                 case MOSTRAR_CONTENIDO -> {
                     List<String> titulos = plataforma.getTitulos();
@@ -75,7 +82,7 @@ public class Main {
                     System.out.println("----------------------------------");
                 }
                 case BUSCAR_POR_GENERO -> {
-                    Genero generoBuscado = ScannerUtils.capturarGenero("Ingresa el género de la película que deseas buscar");
+                    Genero generoBuscado = ScannerUtils.capturarGenero("Ingresa el género de la película que deseas buscar \n");
                     List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
                     System.out.println(contenidoPorGenero.size() + " películas encontradas en el género '" + generoBuscado + "':");
                     contenidoPorGenero.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));

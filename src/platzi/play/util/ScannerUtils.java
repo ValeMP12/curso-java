@@ -40,7 +40,7 @@ public class ScannerUtils {
             for (Genero genero : Genero.values()) {
                 System.out.println("- " + genero.name());
             }
-            System.out.println("Que genero desea buscar? " );
+            System.out.println("Que genero desea " );
             try {
                 String input = scanner.nextLine().toUpperCase();
                 return Genero.valueOf(input);
