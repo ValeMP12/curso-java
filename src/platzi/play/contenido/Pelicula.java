@@ -29,7 +29,7 @@ public class Pelicula {
         System.out.println(titulo);
     }
     public String obtenerFichaTecnica() {
-        return titulo + " (" + fechaEstreno.getYear() + ") \n" +
+        return "🎬" + titulo + " (" + fechaEstreno.getYear() + ") \n" +
                 "Género: " + genero + "\n" +
                 "Duracion: " + duracion +" min \n" +
                 "Fecha de estreno: " + fechaEstreno + "\n" +

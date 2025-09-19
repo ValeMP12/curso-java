@@ -1,7 +1,5 @@
 package platzi.play.plataforma;
-
 import platzi.play.contenido.Pelicula;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,21 @@ public class Plataforma {
         contenido.add(elemento);
     }
     public void mostrarTitulo() {
-        for (Pelicula pelicula : contenido) {
-            System.out.println(pelicula.getTitulo());
-        }
+//        for (Pelicula pelicula : contenido) {
+//            System.out.println(pelicula.getTitulo());
+//        }
+        contenido.forEach(pelicula -> System.out.println(pelicula.getTitulo()));
+    }
+    public Pelicula busacarPorTitulo(String titulo) {
+       return contenido.stream()
+                .filter(contenido -> contenido.getTitulo().equalsIgnoreCase(titulo))
+                .findFirst()
+                .orElse(null);
+    }
+    public List<Pelicula> buscarPorGenero(String genero) {
+        return contenido.stream()
+                .filter(contenido -> contenido.getGenero().equalsIgnoreCase(genero))
+                .toList();
     }
     public void eliminar(Pelicula elemento) {
         this.contenido.remove(elemento);

@@ -9,7 +9,7 @@ public class ScannerUtils {
         return scanner.nextLine();
     }
     public static int capturarNumero(String mensaje) {
-        System.out.println(mensaje + ": ");
+        System.out.println(mensaje + " ");
         while (!scanner.hasNextInt()) {
             System.out.println("Por favor ingresa un dato numérico válido." + mensaje + ": ");
             scanner.next(); // Limpiar la entrada inválida
