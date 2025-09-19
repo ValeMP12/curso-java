@@ -1,5 +1,6 @@
 package platzi.play;
 
+import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
@@ -49,7 +50,7 @@ public class Main {
             switch (opcionElegida) {
                 case AGREGAR_CONTENIDO -> {
                     String nombre = ScannerUtils.capturarTexto("¿Cual es el nombre de la pelicula?");
-                    String genero = ScannerUtils.capturarTexto("¿Cual es el genero de la pelicula?");
+                    Genero genero = ScannerUtils.capturarGenero("¿Cual es el genero de la pelicula?");
                     int duracion = ScannerUtils.capturarNumero("¿Cual es la duracion de la pelicula?");
                     double calificacion = ScannerUtils.capturarDecimal("¿Cual es la calificacion de la pelicula?");
                     Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
@@ -74,7 +75,7 @@ public class Main {
                     System.out.println("----------------------------------");
                 }
                 case BUSCAR_POR_GENERO -> {
-                    String generoBuscado = ScannerUtils.capturarTexto("Ingresa el género de la película que deseas buscar");
+                    Genero generoBuscado = ScannerUtils.capturarGenero("Ingresa el género de la película que deseas buscar");
                     List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
                     System.out.println(contenidoPorGenero.size() + " películas encontradas en el género '" + generoBuscado + "':");
                     contenidoPorGenero.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
@@ -113,11 +114,11 @@ public class Main {
         }
     }
     private static void cargarPeliculas(Plataforma plataforma) {
-        plataforma.agregar(new Pelicula("Shrek", 120, "Comedia", 8.5));
-        plataforma.agregar(new Pelicula("El Origen", 150, "Ciencia Ficción", 9.0));
-        plataforma.agregar(new Pelicula("Batman", 130, "Acción", 8.7));
-        plataforma.agregar(new Pelicula("Titanic", 180, "Romance", 7.5));
-        plataforma.agregar(new Pelicula("Avengers: Endgame", 180, "Acción", 8.8));
-        plataforma.agregar(new Pelicula("El Rey León", 90, "Animación", 8.3));
+        plataforma.agregar(new Pelicula("Shrek", 120, Genero.COMEDIA, 8.5));
+        plataforma.agregar(new Pelicula("El Origen", 150, Genero.CIENCIA_FICCION, 9.0));
+        plataforma.agregar(new Pelicula("Batman", 130, Genero.ACCION, 8.7));
+        plataforma.agregar(new Pelicula("Titanic", 180, Genero.ROMANCE, 7.5));
+        plataforma.agregar(new Pelicula("Avengers: Endgame", 180, Genero.ACCION, 8.8));
+        plataforma.agregar(new Pelicula("El Rey León", 90, Genero.ANIMACION, 8.3));
     }
 }

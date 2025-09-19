@@ -1,5 +1,7 @@
 package platzi.play.util;
 
+import platzi.play.contenido.Genero;
+
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -31,5 +33,20 @@ public class ScannerUtils {
     public static String capturarFecha(String mensaje) {
         System.out.println(mensaje + " (YYYY-MM-DD): ");
         return scanner.nextLine();
+    }
+    public static Genero capturarGenero(String mensaje) {
+        while (true) {
+            System.out.println(mensaje + " Opciones: ");
+            for (Genero genero : Genero.values()) {
+                System.out.println("- " + genero.name());
+            }
+            System.out.println("Que genero desea buscar? " );
+            try {
+                String input = scanner.nextLine().toUpperCase();
+                return Genero.valueOf(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println("No tenemos ninguna pelicula con ese genero. Ingrese otro genereso si lo decea 😊 \n" + mensaje + ": ");
+            }
+        }
     }
 }
