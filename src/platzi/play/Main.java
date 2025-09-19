@@ -16,8 +16,9 @@ public class Main {
     public static final int MOSTRAR_CONTENIDO = 2;
     public static final int BUSCAR_POR_TITULO = 3;
     public static final int BUSCAR_POR_GENERO = 4;
-    public static final int ELIMINAR_CONTENIDO = 5;
-    public static final int SALIR = 6;
+    public static final int VER_POPULARES = 5;
+    public static final int ELIMINAR_CONTENIDO = 6;
+    public static final int SALIR = 7;
 
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(NOMBRE_APP);
@@ -28,6 +29,7 @@ public class Main {
         //4. Eliminar contenido
         //5. Salir
         cargarPeliculas(plataforma);
+        System.out.println("Mas de " + plataforma.getDuracionTotal() + " minutos de entretenimiento! \n");
 
         while (true) {
             int opcionElegida = ScannerUtils.capturarNumero("""
@@ -36,8 +38,9 @@ public class Main {
                     2. Mostrar contenido
                     3. Buscar por titulo
                     4. Buscar por genero
-                    5. Eliminar contenido
-                    6. Salir
+                    5. Ver populares
+                    6. Eliminar contenido
+                    7. Salir
                     Ingresa una opcion (1-6):
                     """);
             System.out.println("-------------------------");
@@ -55,7 +58,8 @@ public class Main {
                     System.out.println("----------------------------------");
                 }
                 case MOSTRAR_CONTENIDO -> {
-                    plataforma.mostrarTitulo();
+                    List<String> titulos = plataforma.getTitulos();
+                    titulos.forEach(System.out::println);
                     System.out.println("----------------------------------");
                 }
                 case BUSCAR_POR_TITULO -> {
@@ -74,6 +78,13 @@ public class Main {
                     List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
                     System.out.println(contenidoPorGenero.size() + " películas encontradas en el género '" + generoBuscado + "':");
                     contenidoPorGenero.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
+                    System.out.println("----------------------------------");
+                }
+                case VER_POPULARES -> {
+                    int cantidad = ScannerUtils.capturarNumero("¿Cuántas películas populares deseas ver?");
+                    List<Pelicula> peliculasPopulares = plataforma.getPopulares(cantidad);
+                    System.out.println("Películas populares: \n");
+                    peliculasPopulares.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
                     System.out.println("----------------------------------");
                 }
                 case ELIMINAR_CONTENIDO -> {
@@ -102,7 +113,7 @@ public class Main {
         }
     }
     private static void cargarPeliculas(Plataforma plataforma) {
-        plataforma.agregar(new Pelicula("shrek", 120, "Comedia", 8.5));
+        plataforma.agregar(new Pelicula("Shrek", 120, "Comedia", 8.5));
         plataforma.agregar(new Pelicula("El Origen", 150, "Ciencia Ficción", 9.0));
         plataforma.agregar(new Pelicula("Batman", 130, "Acción", 8.7));
         plataforma.agregar(new Pelicula("Titanic", 180, "Romance", 7.5));
