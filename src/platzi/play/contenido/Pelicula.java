@@ -26,7 +26,7 @@ public class Pelicula {
     }
 
     public void reproducir() {
-        System.out.println(titulo);
+        System.out.println("Estas reproduciendo " + titulo + "...");
     }
     public String obtenerFichaTecnica() {
         return "🎬" + titulo + " (" + fechaEstreno.getYear() + ") \n" +

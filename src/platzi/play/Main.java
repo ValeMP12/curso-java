@@ -2,9 +2,9 @@ package platzi.play;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.ResumenContenido;
 import platzi.play.excepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
-import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
 
 import java.util.List;
@@ -19,8 +19,9 @@ public class Main {
     public static final int BUSCAR_POR_TITULO = 3;
     public static final int BUSCAR_POR_GENERO = 4;
     public static final int VER_POPULARES = 5;
-    public static final int ELIMINAR_CONTENIDO = 6;
-    public static final int SALIR = 7;
+    public static final int REPRODUCIR_CONTENIDO = 6;
+    public static final int ELIMINAR_CONTENIDO = 7;
+    public static final int SALIR = 8;
 
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(NOMBRE_APP);
@@ -41,9 +42,10 @@ public class Main {
                     3. Buscar por titulo
                     4. Buscar por genero
                     5. Ver populares
-                    6. Eliminar contenido
-                    7. Salir
-                    Ingresa una opcion (1-6):
+                    6. Reproducir contenido
+                    7. Eliminar contenido
+                    8. Salir
+                    Ingresa una opcion (1-8):
                     """);
             System.out.println("-------------------------");
             System.out.println("Opcion elegida: " + opcionElegida);
@@ -66,8 +68,8 @@ public class Main {
                     }
                 }
                 case MOSTRAR_CONTENIDO -> {
-                    List<String> titulos = plataforma.getTitulos();
-                    titulos.forEach(System.out::println);
+                    List<ResumenContenido> contenidosResumidos = plataforma.getResumenes();
+                    contenidosResumidos.forEach(resumenContenido -> System.out.println(resumenContenido.toString()));
                     System.out.println("----------------------------------");
                 }
                 case BUSCAR_POR_TITULO -> {
@@ -93,6 +95,16 @@ public class Main {
                     List<Pelicula> peliculasPopulares = plataforma.getPopulares(cantidad);
                     System.out.println("Películas populares: \n");
                     peliculasPopulares.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
+                    System.out.println("----------------------------------");
+                }
+                case REPRODUCIR_CONTENIDO -> {
+                    String tituloAReproducir = ScannerUtils.capturarTexto("Ingresa el título de la película que deseas reproducir ");
+                    Pelicula peliculaAReproducir = plataforma.busacarPorTitulo(tituloAReproducir);
+                    if (peliculaAReproducir != null) {
+                        plataforma.reproducir(peliculaAReproducir);
+                    } else {
+                        System.out.println("La película con título '" + tituloAReproducir + "' no se encontró en la plataforma.");
+                    }
                     System.out.println("----------------------------------");
                 }
                 case ELIMINAR_CONTENIDO -> {
