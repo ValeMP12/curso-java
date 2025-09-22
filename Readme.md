@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Estado-En%20Curso-yellow.svg" />
-  <img src="https://img.shields.io/badge/Java-17-blue.svg" />
+  <img src="https://img.shields.io/badge/Java-21-blue.svg" />
   <img src="https://img.shields.io/github/last-commit/ValeMP12/curso-java.svg" />
   <img src="https://img.shields.io/github/languages/top/ValeMP12/curso-java.svg" />
 </p>
