@@ -2,7 +2,7 @@ package platzi.play.contenido;
 
 import java.time.LocalDate;
 
-public class Contenido {
+public abstract class Contenido {
     private String titulo;
     private String descripcion;
     private int duracion;
@@ -26,9 +26,7 @@ public class Contenido {
         this.fechaEstreno = LocalDate.now();
     }
 
-    public void reproducir() {
-        System.out.println("Estas reproduciendo " + titulo + "...");
-    }
+    public abstract void reproducir();
     public String obtenerFichaTecnica() {
         return "🎬" + titulo + " (" + fechaEstreno.getYear() + ") \n" +
                 "Género: " + genero + "\n" +

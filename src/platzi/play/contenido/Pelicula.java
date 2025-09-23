@@ -5,4 +5,9 @@ public class Pelicula extends Contenido {
         super(titulo, duracion, genero, calificacion);
     }
 
+    @Override
+    public void reproducir() {
+        System.out.println("Reproduciendo película: " + getTitulo());
+    }
+
 }

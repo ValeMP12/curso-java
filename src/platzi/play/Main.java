@@ -104,19 +104,19 @@ public class Main {
                     System.out.println("----------------------------------");
                 }
                 case VER_POPULARES -> {
-                    int cantidad = ScannerUtils.capturarNumero("¿Cuántas películas populares deseas ver?");
+                    int cantidad = ScannerUtils.capturarNumero("¿Cuántos contenidos populares deseas ver?");
                     List<Contenido> peliculasPopulares = plataforma.getPopulares(cantidad);
                     System.out.println("Películas populares: \n");
                     peliculasPopulares.forEach(contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
                     System.out.println("----------------------------------");
                 }
                 case REPRODUCIR_CONTENIDO -> {
-                    String tituloAReproducir = ScannerUtils.capturarTexto("Ingresa el título de la película que deseas reproducir ");
+                    String tituloAReproducir = ScannerUtils.capturarTexto("Ingresa el título del contenido que deseas reproducir");
                     Contenido peliculaAReproducir = plataforma.busacarPorTitulo(tituloAReproducir);
                     if (peliculaAReproducir != null) {
                         plataforma.reproducir(peliculaAReproducir);
                     } else {
-                        System.out.println("La película con título '" + tituloAReproducir + "' no se encontró en la plataforma.");
+                        System.out.println("El contenido con título '" + tituloAReproducir + "' no se encontró en la plataforma.");
                     }
                     System.out.println("----------------------------------");
                 }
