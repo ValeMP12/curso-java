@@ -5,8 +5,13 @@ import platzi.play.contenido.Pelicula;
 import platzi.play.contenido.ResumenContenido;
 import platzi.play.excepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
+import platzi.play.util.FileUtils;
 import platzi.play.util.ScannerUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -133,11 +138,6 @@ public class Main {
         }
     }
     private static void cargarPeliculas(Plataforma plataforma) {
-        plataforma.agregar(new Pelicula("Shrek", 120, Genero.COMEDIA, 8.5));
-        plataforma.agregar(new Pelicula("El Origen", 150, Genero.CIENCIA_FICCION, 9.0));
-        plataforma.agregar(new Pelicula("Batman", 130, Genero.ACCION, 8.7));
-        plataforma.agregar(new Pelicula("Titanic", 180, Genero.ROMANCE, 7.5));
-        plataforma.agregar(new Pelicula("Avengers: Endgame", 180, Genero.ACCION, 8.8));
-        plataforma.agregar(new Pelicula("El Rey León", 90, Genero.ANIMACION, 8.3));
+        plataforma.getContenido().addAll(FileUtils.leerContenido());
     }
 }
