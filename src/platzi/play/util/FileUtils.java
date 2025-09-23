@@ -1,7 +1,7 @@
 package platzi.play.util;
 
+import platzi.play.contenido.Contenido;
 import platzi.play.contenido.Genero;
-import platzi.play.contenido.Pelicula;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +15,7 @@ public class FileUtils {
 
     private static final String NOMBRE_ARCHIVO = "contenido.txt";
     private static final String SEPARADOR = "|";
-    public static void escribirContenido(Pelicula contenido) {
+    public static void escribirContenido(Contenido contenido) {
         String linea = String.join(SEPARADOR, contenido.getTitulo(),
                 String.valueOf(contenido.getDuracion()),
                 contenido.getGenero().name(),
@@ -29,22 +29,23 @@ public class FileUtils {
         }
     }
 
-    public static List<Pelicula> leerContenido() {
-        List<Pelicula> contenidoDesdeArchivo = new ArrayList<>();
+    public static List<Contenido> leerContenido() {
+        List<Contenido> contenidoDesdeArchivo = new ArrayList<>();
         try {
             List<String> lineas = Files.readAllLines(Paths.get(NOMBRE_ARCHIVO));
             lineas.forEach(linea -> {
                 String[] datos = linea.split(SEPARADOR);
-                if (datos.length == 5) {
+                if (datos.length == 6) {
                     String titulo = datos[0];
                     int duracion = Integer.parseInt(datos[1]);
                     Genero genero = Genero.valueOf(datos[2].toUpperCase());
                     double calificacion = datos[3].isBlank() ? 0 : Double.parseDouble(datos[3]);
                     LocalDate fechaEstreno = LocalDate.parse(datos[4]);
+                    String narrador = datos[5].isBlank() ? "N/A" : datos[5];
 
-                    Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion);
-                    pelicula.setFechaEstreno(fechaEstreno);
-                    contenidoDesdeArchivo.add(pelicula);
+                    Contenido contenido = new Contenido(titulo, duracion, genero, calificacion);
+                    contenido.setFechaEstreno(fechaEstreno);
+                    contenidoDesdeArchivo.add(contenido);
                 }
                 System.out.println(linea);
             });

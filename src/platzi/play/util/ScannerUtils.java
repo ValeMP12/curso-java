@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ScannerUtils {
     public static Scanner scanner = new Scanner(System.in);
     public static String capturarTexto(String mensaje) {
-        System.out.println(mensaje + ": ");
+        System.out.println(mensaje + " ");
         return scanner.nextLine();
     }
     public static int capturarNumero(String mensaje) {
