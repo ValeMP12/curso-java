@@ -19,17 +19,13 @@ public class Main {
     public static final int BUSCAR_POR_GENERO = 4;
     public static final int VER_POPULARES = 5;
     public static final int REPRODUCIR_CONTENIDO = 6;
-    public static final int ELIMINAR_CONTENIDO = 7;
-    public static final int SALIR = 8;
+    public static final int BUSCAR_POR_TIPO = 7;
+    public static final int ELIMINAR_CONTENIDO = 8;
+    public static final int SALIR = 9;
 
     public static void main(String[] args) {
         Plataforma plataforma = new Plataforma(NOMBRE_APP);
         System.out.println(NOMBRE_APP + " v" + VERSION);
-        //1. Agregar contenido
-        //2. Mostrar contenido
-        //3. Buscar por titulo
-        //4. Eliminar contenido
-        //5. Salir
         cargarPeliculas(plataforma);
         System.out.println("Mas de " + plataforma.getDuracionTotal() + " minutos de entretenimiento! \n");
 
@@ -42,8 +38,9 @@ public class Main {
                     4. Buscar por genero
                     5. Ver populares
                     6. Reproducir contenido
-                    7. Eliminar contenido
-                    8. Salir
+                    7. Buscar por tipo
+                    8. Eliminar contenido
+                    9. Salir
                     Ingresa una opcion (1-8):
                     """);
             System.out.println("-------------------------");
@@ -82,6 +79,8 @@ public class Main {
                     }
                 }
                 case MOSTRAR_CONTENIDO -> {
+                    plataforma.getContenido().clear();
+                    plataforma.getContenido().addAll(FileUtils.leerContenido());
                     List<ResumenContenido> contenidosResumidos = plataforma.getResumenes();
                     contenidosResumidos.forEach(resumenContenido -> System.out.println(resumenContenido.toString()));
                     System.out.println("----------------------------------");
@@ -118,6 +117,26 @@ public class Main {
                         plataforma.reproducir(peliculaAReproducir);
                     } else {
                         System.out.println("La película con título '" + tituloAReproducir + "' no se encontró en la plataforma.");
+                    }
+                    System.out.println("----------------------------------");
+                }
+                case BUSCAR_POR_TIPO -> {
+                    int tipoDeContenido = ScannerUtils.capturarNumero("""
+                            ¿Qué tipo de contenido deseas buscar?
+                            1. Película
+                            2. Documental
+                            Ingresa una opción (1-2):
+                            """);
+                    if (tipoDeContenido == 1) {
+                        List<Pelicula> peliculas = plataforma.getPeliculas();
+                        System.out.println("Películas encontradas: \n");
+                        peliculas.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTecnica() + "\n"));
+                    } else if (tipoDeContenido == 2) {
+                        List<Documental> documentales = plataforma.getDocumentales();
+                        System.out.println("Documentales encontrados: \n");
+                        documentales.forEach(documental -> System.out.println(documental.obtenerFichaTecnica() + "\n"));
+                    } else {
+                        System.out.println("Opción inválida. Por favor, ingresa 1 o 2.");
                     }
                     System.out.println("----------------------------------");
                 }
