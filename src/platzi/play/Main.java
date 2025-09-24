@@ -28,6 +28,8 @@ public class Main {
         System.out.println(NOMBRE_APP + " v" + VERSION);
         cargarPeliculas(plataforma);
         System.out.println("Mas de " + plataforma.getDuracionTotal() + " minutos de entretenimiento! \n");
+        plataforma.getPromocionables().forEach(promocionable -> System.out.println(promocionable.promocionar()));
+        System.out.println("\n");
 
         while (true) {
             int opcionElegida = ScannerUtils.capturarNumero("""
